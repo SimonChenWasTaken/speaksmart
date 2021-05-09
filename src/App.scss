@@ -28,6 +28,8 @@ header {
   justify-content: center;
   align-items: center;
   background-color: $dark;
+  position: fixed;
+  z-index: 1000;
 
   a {
     display: flex;
@@ -39,11 +41,10 @@ header {
     height: 2.5rem;
   }
 }
-.CollectionPreview {
-  display: flex;
-  img {
-    width: 100px;
-  }
+
+.rest {
+  position: relative;
+  top: 5rem;
 }
 
 .Book {
@@ -96,7 +97,19 @@ header {
   }
 
   .bottom {
-    padding: 1.6rem;
+    .keywords {
+      padding: 1.6rem;
+      // padding-bottom: 0;
+      h2 {
+        padding-left: 1.6rem;
+      }
+
+    .current {
+      font-weight: bold;
+    }
+
+    }
+    
   }
 
   ul {
@@ -106,6 +119,24 @@ header {
 
     li {
       margin: 0.4rem 0;
+    }
+  }
+
+  .InfoSnippet {
+    // margin: 1rem 0;
+    padding: 1.8rem;
+    &:nth-child(odd) {
+      background-color: #eee;
+    }
+
+    h3 {
+      font-size: 2rem;
+      margin-top: 0;
+
+      a {
+        padding: 0;
+        margin: 0;
+      }
     }
   }
 
@@ -119,8 +150,33 @@ button, a, a:visited, a:active {
   margin: 0.4rem;
   font-size: 1.6rem;
   border-radius: .8rem;
+  text-decoration: none;
+  color:hsl(214, 80%, 45%);
 
   &:hover {
     cursor:pointer;
+  }
+}
+
+.CollectionPreview {
+  display: flex;
+  
+  img {
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    img {
+    height: 150px;
+    align-self: flex-start;
+    margin: 1.6rem 0;
+    }
+    font-weight: bold;
+    color: #000000;
+  }
+
+  &:nth-child(even) {
+    background-color: #eee;
   }
 }

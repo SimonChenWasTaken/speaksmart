@@ -10,6 +10,9 @@ import 'firebase/firestore'
 import { collection, query, where, getDocs } from "firebase/firestore"
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { Dropdown } from 'react-dropdown'
+import Scroll from "react-scroll"
+
+const scroll = Scroll.animateScroll
 
 // Firebase Init
 if (!firebase.apps.length) {
@@ -40,7 +43,7 @@ function App() {
           <Link to="/"><img src={logo} /></Link>
 
         </header>
-        <div>
+        <div className="rest">
           <Switch>
             <Route exact path="/"><Collection /> </Route>
             <Route path="/book/:id" component={(props) => <Book {...props} />} />
@@ -53,10 +56,11 @@ function App() {
 
 const InfoSnippet = ({ title, body, link }) => {
   return (
-    <div>
-      <div>{title}</div>
-      <a href={link} target="_blank">{link}</a>
-      <div dangerouslySetInnerHTML={{ __html: body }} />
+    <div className="InfoSnippet">
+      <h3>
+      <a href={link} target="_blank">{title}</a>
+      </h3>
+      <div dangerouslySetInnerHTML={{ __html: body + "..." }} />
     </div>
   )
 }
@@ -75,15 +79,14 @@ const InfoBox = ({ searchQuery, lang }) => {
     setWikiJson(json)
   }, [searchQuery])
 
-  //prolly shouldn't hardcode this ... maybe I will make a new component for the infoboxchildren
   return (
     <div className="InfoBox">
       {wikiJson && searchQuery &&
-        <div>
-          {[0, 1, 2].map((i) => (
+        <Fragment>
+          {[0, 1, 2, 3, 4, 5, 6].map((i) => (
             <InfoSnippet title={wikiJson.query.search[i].title} link={`https://${lang}.wikipedia.org/?curid=${wikiJson.query.search[i].pageid}`} body={wikiJson.query.search[i].snippet} />))
           }
-        </div>
+        </Fragment>
       }
     </div>
   )
@@ -113,10 +116,20 @@ const Book = (props) => {
             <iframe frameBorder={false}  src={book.pdfLink}></iframe>
           </div>
         </div>
-      )}
+)}
       <div className="bottom">
-        Keywords: {book && book.keywords.map((keyword) => <button onClick={() => { setKeyword(keyword) }}>{keyword}</button> )}
-        {book && <InfoBox searchQuery={currentKeyword} lang={book.lang} />}
+      <div className="keywords">
+        Keywords: {book && book.keywords.map((keyword) => <button className={currentKeyword === keyword ? "current" : ""} onClick={() => {
+           setKeyword(keyword) 
+           scroll.scrollToBottom({
+            //  duration: 3000,
+              //  smooth: 'easeOutCubic',
+           })
+
+          }}>{keyword}</button> )}
+</div>
+        {book &&  <Fragment>
+          <InfoBox searchQuery={currentKeyword} lang={book.lang} /></Fragment>}
       </div>
     </div>
   )
@@ -128,9 +141,9 @@ const CollectionPreview = ({ previewPhoto, name, to, score }) => {
     <div className="CollectionPreview">
       <Link to={to}>
         <img src={previewPhoto} />
-        {name}
+        {name} -
+      difficulty score: {score}
       </Link>
-      Difficulty score: {score}
     </div>
   )
 }
