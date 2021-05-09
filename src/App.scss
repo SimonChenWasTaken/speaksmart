@@ -95,6 +95,19 @@ header {
   }
   }
 
+  .bottom {
+    padding: 1.6rem;
+  }
+
+  ul {
+    // margin: 1.6rem;
+    padding: 0;
+    list-style: inside;
+
+    li {
+      margin: 0.4rem 0;
+    }
+  }
 
 }
 

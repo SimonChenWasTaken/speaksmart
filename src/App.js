@@ -107,17 +107,15 @@ const Book = (props) => {
             <div className="left">
               <h1>{book.name}</h1>
               <div>Difficulty Score: {book.difficultyScore}</div>
-              <div>Keywords: {book && book.keywords.map((keyword) => { return <button onClick={() => { setKeyword(keyword) }}>{keyword}</button> })}</div>
+              <ul><strong>Keywords:</strong> {book && book.keywords.map(keyword => <li> {keyword} </li>)} </ul>
               <img src={book.previewPhoto} alt={book.name} />
             </div>
             <iframe frameBorder={false}  src={book.pdfLink}></iframe>
           </div>
         </div>
       )}
-      <div>
+      <div className="bottom">
         Keywords: {book && book.keywords.map((keyword) => <button onClick={() => { setKeyword(keyword) }}>{keyword}</button> )}
-      </div>
-      <div>
         {book && <InfoBox searchQuery={currentKeyword} lang={book.lang} />}
       </div>
     </div>
