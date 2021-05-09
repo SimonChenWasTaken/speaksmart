@@ -1,7 +1,7 @@
 require('dcp-client').initSync();
 const compute = require('dcp/compute');
 
-const bookSectionsToProcess = ["", ""];
+const bookSectionsToProcess = ["", ""]; // Sample input
 
 /* Javascript implementation of the Dale-Chall readability algorithm for Dan Desjardins' DCP Platform */
 
@@ -25,7 +25,7 @@ function workFn(section) {
 }
 
 /* Declare job handle, associate input set with work function */
-let inputSet = ["john cena was a beautiful fighter gracefully eating banana peels"];
+let inputSet = bookSectionsToProcess;
 let job = compute.for(inputSet, workFn);
 
 /* Wire Up Some Events */
