@@ -27,7 +27,7 @@ header {
   line-height: 5rem;
   justify-content: center;
   align-items: center;
-  background-color: $dark;
+  background: linear-gradient( to right, hsl(198, 90%, 58%),  hsl(155, 94%, 44%));
   position: fixed;
   z-index: 1000;
 
@@ -129,6 +129,13 @@ header {
       background-color: #eee;
     }
 
+    padding-left: 10rem;
+
+    div {
+      max-width: 600px;
+      line-height: 2.2rem;
+    }
+
     h3 {
       font-size: 2rem;
       margin-top: 0;
@@ -161,7 +168,8 @@ button, a, a:visited, a:active {
 .CollectionPreview {
   display: flex;
   
-  img {
+  h2 {
+    margin: 0.8rem 0;
   }
 
   a {
@@ -172,7 +180,7 @@ button, a, a:visited, a:active {
     align-self: flex-start;
     margin: 1.6rem 0;
     }
-    font-weight: bold;
+    // font-weight: bold;
     color: #000000;
   }
 

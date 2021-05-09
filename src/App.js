@@ -83,7 +83,7 @@ const InfoBox = ({ searchQuery, lang }) => {
     <div className="InfoBox">
       {wikiJson && searchQuery &&
         <Fragment>
-          {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+          {[0, 1, 2, 3, 4].map((i) => (
             <InfoSnippet title={wikiJson.query.search[i].title} link={`https://${lang}.wikipedia.org/?curid=${wikiJson.query.search[i].pageid}`} body={wikiJson.query.search[i].snippet} />))
           }
         </Fragment>
@@ -140,9 +140,9 @@ const CollectionPreview = ({ previewPhoto, name, to, score }) => {
   return (
     <div className="CollectionPreview">
       <Link to={to}>
+        <h2>{name}</h2>
         <img src={previewPhoto} />
-        {name} -
-      difficulty score: {score}
+      Difficulty score: {score}
       </Link>
     </div>
   )
